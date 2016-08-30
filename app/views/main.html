@@ -4,9 +4,9 @@
       <div class="chat_msg" ng-repeat="msg in msgList" ng-class="[msg.botClass, msg.editable]">
         <div ng-if="msg.editable=='canedit'">
           <div class="msg_img"> <img ng-src="images/{{msg.imgPath}}" /> </div>
-          <div class="msg_txt" ng-show="showEditAble[msg.id]" ng-click="enableEditBox(msg.id)">{{msg.msgTxt}}</div>
+          <div class="msg_txt" ng-show="showEditAble[msg.id]" ng-click="enableEditBox(msg.id)">{{msg.msgTxt}} {{username}}</div>
           <div class="msg_txt" ng-hide="showEditAble[msg.id]">
-            <input type="text" name="change-input-{{msg.id}}"/>
+            <input type="text" ng-model="username" ng-blur="editUsername(username, msg.id)"/>
           </div>
         </div>
         <div ng-if="msg.editable==''">

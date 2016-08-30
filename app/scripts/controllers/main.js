@@ -13,11 +13,19 @@ angular.module('shortlistApp')
     $scope.cityNames = ["Delhi", "Mumbai", "Chandigarh", "Noida", "Gurgaon", "Chennai", "Kolkata"];
     $scope.count = 0;
     $scope.botMsg = ['Hi! What\'s your full name? We\'d love to get to know you', 'Welcome! ', 'What\'s your mobile number?', 'Where do you live?', 'Thank you for your valuable time'];
-    $scope.username = (localStorage.getItem('username') !== null) ? localStorage.getItem('username') : 'Sumit Mann';
-    localStorage.setItem('username', $scope.username);
+    localStorage.setItem('username', 'Sumit Mann');
+    $scope.username = localStorage.getItem('username');
+
     $scope.enableEditBox = function(id){
-      $scope.showEditAble = !$scope.showEditAble;
+      $scope.showEditAble[id] = !$scope.showEditAble[id];
     }
+
+    $scope.editUsername = function(newName, id){
+      localStorage.setItem('username', newName);
+      $scope.showEditAble[id] = !$scope.showEditAble[id];
+      $scope.username = localStorage.getItem('username');
+    }
+
     $scope.msgList = [
       {
         id:1,
@@ -29,7 +37,7 @@ angular.module('shortlistApp')
         id:2,
         botClass: '',
         imgPath: 'user.jpg',
-        msgTxt: $scope.username,
+        msgTxt: '',
         editable: 'canedit'
       }, {
         id:3,
