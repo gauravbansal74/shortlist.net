@@ -1,0 +1,26 @@
+<div class="chat_wrap">
+  <div class="chat_msgwrap">
+    <div class="chat_list ng-cloak">
+      <div class="chat_msg" ng-repeat="msg in msgList" ng-class="[msg.botClass, msg.editable]">
+        <div ng-if="msg.editable=='canedit'">
+          <div class="msg_img"> <img ng-src="images/{{msg.imgPath}}" /> </div>
+          <div class="msg_txt" ng-show="showEditAble[msg.id]" ng-click="enableEditBox(msg.id)">{{msg.msgTxt}}</div>
+          <div class="msg_txt" ng-hide="showEditAble[msg.id]">
+            <input type="text" name="change-input-{{msg.id}}"/>
+          </div>
+        </div>
+        <div ng-if="msg.editable==''">
+          <div class="msg_img"> <img ng-src="images/{{msg.imgPath}}" /> </div>
+          <div class="msg_txt">{{msg.msgTxt}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="chat_inputwrap">
+    <form class="chat_inputmain" ng-submit="addMsg()">
+      <input type="text" class="text_input chat_input" placeholder="Type here..." ng-model='newMsg' ui-items="cityNames" auto-complete required>
+      <input type="submit" class="send_btn" value="Send">
+      </from>
+  </div>
+</div>
